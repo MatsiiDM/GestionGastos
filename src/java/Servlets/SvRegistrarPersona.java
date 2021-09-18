@@ -74,8 +74,9 @@ public class SvRegistrarPersona extends HttpServlet {
         //Traigo los datos del JSP
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-        Date fechaNacimiento = control.ParseFecha("fechaNacimiento"); 
+        System.out.println(request.getParameter("fechaNacimiento"));
+        Date fechaNacimiento = control.ParseFecha(request.getParameter("fechaNacimiento"));
+        System.out.println(fechaNacimiento);
         String cargo = request.getParameter("cargo");
         long dni = Integer.parseInt(request.getParameter("dni"));
         String direccion = request.getParameter("direccion");
@@ -91,6 +92,7 @@ public class SvRegistrarPersona extends HttpServlet {
         //conecto con la logica
         
         control.crearPersona(nombre, apellido, cargo, fechaNacimiento, dni, direccion);
+        response.sendRedirect("listaPersonas.jsp");
        
     }
 
